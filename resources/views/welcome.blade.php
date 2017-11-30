@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>HeapCo</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -48,6 +48,10 @@
             .title {
                 font-size: 84px;
             }
+            .subtitle{
+                font-size: 24px;
+                font-weight: 600;
+            }
 
             .links > a {
                 color: #636b6f;
@@ -78,16 +82,18 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title">
+                    HeapCo
+                </div>
+                <div class="subtitle m-b-md">
+                        THIS WEBSITE IS UNDER CONSTRUCTION.
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://www.evernote.com/shard/s571/sh/44684a1f-a3c1-48a0-b9de-7ac53bde9968/8530be7c9aa8ceca7a48d334e4627160">Change Logs</a>
+                    <a href="https://github.com/iangabrielsanchez/heapco">Source Code</a>
+                    <a href="https://www.facebook.com/messages/t/1599084470116939">Dev Chat</a>
+                    <a href="mailto:iangabrielsanchez@gmail.com">Email</a>
                 </div>
             </div>
         </div>
