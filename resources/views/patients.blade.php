@@ -104,7 +104,6 @@
 
 		</div>
 	</div>
-	{{$patients[0]}}
 </div>
 @endsection @section('script') {{--
 <script src="{{ asset('/js/datatables/patients.js') }}"></script> --}}
