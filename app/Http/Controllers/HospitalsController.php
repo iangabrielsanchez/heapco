@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Hospital;
 use Illuminate\Http\Request;
 
-class HospitalController extends Controller
+class HospitalsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        return Hospital::all();
+        $hospitals = Hospital::all();
+        return view('hospitals', compact('hospitals'));
     }
 
     /**
@@ -30,21 +31,26 @@ class HospitalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $hospital = new Hospital;
+        $hospital->hospital_name = $request->hospital_name;
+        $hospital->address = $request->address;
+        $hospital->type = $request->type;
+        $hospital->save();
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Hospital  $hospital
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Hospital $hospital)
+    public function show($id)
     {
         //
     }
@@ -52,10 +58,10 @@ class HospitalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Hospital  $hospital
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hospital $hospital)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +70,10 @@ class HospitalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Hospital  $hospital
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hospital $hospital)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +81,10 @@ class HospitalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Hospital  $hospital
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hospital $hospital)
+    public function destroy($id)
     {
         //
     }

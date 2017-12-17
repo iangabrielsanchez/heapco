@@ -22,3 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/accounts', 'PersonnelProfileController@index');
 Route::resource('accounts', 'PersonnelProfileController');
 Route::resource('patients', 'PatientsController');
+Route::resource('hospitals', 'HospitalsController');
+Route::resource('forums', 'PostsController');
+
+//Route::get('/comments', '')
+Route::post('/comments', 'CommentsController@store');
