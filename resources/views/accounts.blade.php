@@ -1,9 +1,10 @@
 @extends('layouts.app') @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+<div class="container-fluid">
 
-			<div class="panel panel-primary">
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">New Personnel</button>
 					<h3>Accounts</h3>

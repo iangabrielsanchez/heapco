@@ -24,6 +24,8 @@ Route::resource('accounts', 'PersonnelProfileController');
 Route::resource('patients', 'PatientsController');
 Route::resource('hospitals', 'HospitalsController');
 Route::resource('forums', 'PostsController');
-
-//Route::get('/comments', '')
 Route::post('/comments', 'CommentsController@store');
+
+Route::get('/layout', function(){
+    return view('layouts.app');
+});
