@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2 margin-top-30">
             <h2><a href="/">HeapCo</a> | Register</h2>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
@@ -49,7 +49,7 @@
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    </span> 
                                 @endif
                             </div>
                         </div>

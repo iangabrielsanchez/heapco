@@ -4,7 +4,7 @@
 		<div class="col-md-8 col-md-offset-2 margin-top-30">
 			<h2>
 				<a href="/">HeapCo</a> | Login</h2>
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">Login</div>
 
 				<div class="panel-body">

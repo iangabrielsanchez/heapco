@@ -36,24 +36,39 @@
 				</li>
 				<li class="active">
 					<a href="/home">
-						<i class="fa fa-home fa-lg" id='navicon' aria-hidden="true"></i>
+						<i class="fa fa-home fa-2x" id='navicon' aria-hidden="true"></i>
 						Home
 					</a>
 				</li>
 				<li>
-					<a href="/accounts">Accounts</a>
+					<a href="/accounts">
+						<i class="fa fa-user-md fa-2x" id='navicon' aria-hidden="true"></i>
+						Personnel Accounts
+					</a>
 				</li>
 				<li>
-					<a href="/patients">Patients</a>
+					<a href="/patients">
+						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
+						Patient Accounts
+					</a>
 				</li>
 				<li>
-					<a href="/hospitals">Hospitals</a>
+					<a href="/hospitals">
+						<i class="fa fa-hospital-o fa-2x" id='navicon' aria-hidden="true"></i>
+						Hospitals List
+					</a>
 				</li>
 				<li>
-					<a href="/forums">Forums</a>
+					<a href="/forums">
+						<i class="fa fa-comments fa-2x" id='navicon' aria-hidden="true"></i>
+						Forums
+					</a>
 				</li>
 				<li>
-					<a href="/layout">Layout</a>
+					<a href="/register">
+						<i class="fa fa-user-secret fa-2x" id='navicon' aria-hidden="true"></i>
+						Administrators
+					</a>
 				</li>
 				<li>
 					<a data-toggle="modal" data-target="#info" href="#">
@@ -69,12 +84,13 @@
 						<h3>Hospital Management System</h3>
 					</a>
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Name Here
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							{{Auth::user()->name}}
 							<i class="fa fa-angle-down" aria-hidden="true"></i>
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="#">My Profile</a>
+								<a href="/profile">My Profile</a>
 							</li>
 							<li>
 								<a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -159,7 +175,7 @@
 		<div class="content">
 			<section class="page-title">
 				<h3>
-					Page Title Here
+					@yield('pageTitle')
 				</h3>
 			</section>
 			@yield('content')

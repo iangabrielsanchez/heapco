@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
@@ -32,4 +30,12 @@ Route::get('/layout', function(){
 
 Route::get('/simplified', function(){
     return view('layouts.simplified');
+});
+
+Route::get('/profile', function(){
+    return view('profile');
+});
+
+Route::get('/mail', function(){
+    return new App\Mail\AccountConfirm();
 });

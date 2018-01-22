@@ -77,3 +77,7 @@ section.page-title {
 .margin-top-30 {
     margin-top: 2em;
 }
+
+#navicon {
+    padding: 0.1em;
+}

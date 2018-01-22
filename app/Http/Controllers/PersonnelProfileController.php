@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PersonnelProfile;
 use App\Hospital;
+use App\User;
 use Illuminate\Http\Request;
 
 class PersonnelProfileController extends Controller
@@ -50,7 +51,7 @@ class PersonnelProfileController extends Controller
     {
         $profile = new PersonnelProfile;
         $profile->email = $request->email;
-        $profile->password = $request->password;
+        $profile->password = bcrypt($request->password);
         $profile->type = $request->type;
         $profile->first_name = $request->first_name;
         $profile->last_name = $request->last_name;
@@ -59,7 +60,11 @@ class PersonnelProfileController extends Controller
         $profile->hospital_id = $request->hospital_id;
         $profile->contact_number = $request->contact_number;
         $profile->save();
-        //return redirect("accounts/$profile->id");
+        User::create([
+            'name' => $request->first_name .' '. $request->last_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
         return back();
     }
 

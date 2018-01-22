@@ -1,13 +1,17 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('pageTitle')
+
+@endsection
+@section('content')
 <div class="container-fluid">
 
 	<div class="row">
 		<div class="col-md-12">
 
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">New Personnel</button>
-					<h3>Accounts</h3>
+					<h3>Personnel Accounts</h3>
 				</div>
 
 
