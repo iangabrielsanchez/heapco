@@ -29,3 +29,7 @@ Route::post('/comments', 'CommentsController@store');
 Route::get('/layout', function(){
     return view('layouts.app');
 });
+
+Route::get('/simplified', function(){
+    return view('layouts.simplified');
+});

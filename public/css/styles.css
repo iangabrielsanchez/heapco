@@ -58,7 +58,6 @@
     position: absolute;
     left: 15vw;
     top: 3.6em;
-    /* width: 85.44%; */
     width: 85vw;
     padding: 1em;
 }
@@ -73,4 +72,8 @@ a.navbar-brand {
 
 section.page-title {
     margin: 1em;
+}
+
+.margin-top-30 {
+    margin-top: 2em;
 }

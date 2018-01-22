@@ -1,9 +1,14 @@
-@extends('layouts.simplified') @section('content')
+@extends('layouts.simplified') 
+@section('title')
+Login
+@endsection
+@section('subtitle')
+Some stupid description here
+@endsection
+@section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2 margin-top-30">
-			<h2>
-				<a href="/">HeapCo</a> | Login</h2>
+		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">Login</div>
 
@@ -16,7 +21,7 @@
 
 							<div class="col-md-6">
 								<input id="email" type="email" class="form-control" name="email" placeholder="E-Mail Address" value="{{ old('email') }}"
-								    required autofocus> @if ($errors->has('email'))
+								 required autofocus> @if ($errors->has('email'))
 								<span class="help-block">
 									<strong>{{ $errors->first('email') }}</strong>
 								</span>
@@ -52,9 +57,6 @@
 									Login
 									<i class="fa fa-arrow-circle-right"></i>
 								</button>
-								<a class="btn btn-link" href="{{ url('/password/reset') }}">
-									Forgot Your Password?
-								</a>
 							</div>
 						</div>
 					</form>

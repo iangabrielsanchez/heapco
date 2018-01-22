@@ -12,10 +12,8 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 
 	<!-- Styles -->
-	{{--
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
+	    crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css" /> @yield('styles')
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">
@@ -37,30 +35,31 @@
 						</h3>
 				</li>
 				<li class="active">
-					<a href="#">
+					<a href="/home">
 						<i class="fa fa-home fa-lg" id='navicon' aria-hidden="true"></i>
 						Home
 					</a>
-					<li>
-						<a href="/accounts">Accounts</a>
-					</li>
-					<li>
-						<a href="/patients">Patients</a>
-					</li>
-					<li>
-						<a href="/hospitals">Hospitals</a>
-					</li>
-					<li>
-						<a href="/forums">Forums</a>
-					</li>
-					<li>
-						<a href="/layout">Layout</a>
-					</li>
-					<li>
-						<a data-toggle="modal" data-target="#info" href="#">
-							<i>Information</i>
-						</a>
-					</li>
+				</li>
+				<li>
+					<a href="/accounts">Accounts</a>
+				</li>
+				<li>
+					<a href="/patients">Patients</a>
+				</li>
+				<li>
+					<a href="/hospitals">Hospitals</a>
+				</li>
+				<li>
+					<a href="/forums">Forums</a>
+				</li>
+				<li>
+					<a href="/layout">Layout</a>
+				</li>
+				<li>
+					<a data-toggle="modal" data-target="#info" href="#">
+						<i>Information</i>
+					</a>
+				</li>
 			</ul>
 		</nav>
 		<nav class="navbar navbar-default navbar-fixed-top nav2">
@@ -78,7 +77,14 @@
 								<a href="#">My Profile</a>
 							</li>
 							<li>
-								<a href="#">Log Out</a>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault();
+													document.getElementById('logout-form').submit();">
+									Logout
+								</a>
+
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+								</form>
 							</li>
 						</ul>
 					</li>
