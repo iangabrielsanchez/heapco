@@ -16,7 +16,7 @@
 	    crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css" /> @yield('styles')
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
 
@@ -178,6 +178,24 @@
 					@yield('pageTitle')
 				</h3>
 			</section>
+			{{--  @if((
+				App\PersonnelProfile::where('email', Auth::user()->email)
+					->where('type','Doctor'))->count() > 0)
+				<p>Hello world!</p>
+			@elseif((
+				App\PersonnelProfile::where('email', Auth::user()->email)
+					->where('type','Nurse'))->count() > 0)
+					<p>yey</p>
+			@elseif((
+				App\Patient::where('email', Auth::user()->email))->count() > 0)
+				<p>pasensya</p>
+			@else
+				<p>non found</p>
+
+			@endif!  --}}
+			@if(session('accountType') !==null) //if session key: accountType,  is not null, apply the logic above
+				{{App\Patient::all()}}
+			@endif
 			@yield('content')
 		</div>
 	</div>

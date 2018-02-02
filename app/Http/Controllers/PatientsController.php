@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Patient;
+use App\User;
 use Illuminate\Http\Request;
 
 class PatientsController extends Controller
@@ -55,8 +56,14 @@ class PatientsController extends Controller
         $patient->birth_date = $request->birth_date;
         $patient->contact_number = $request->contact_number;
         $patient->save();
+        User::create([
+            'name' => $request->first_name .' '. $request->last_name,
+            'email' => $request->email,
+            'password' => bcrypt(strtolower($request->last_name . explode('-',$request->birth_date)[0])),
+        ]);
         return back();
         //return redirect("patients/$patient->id");
+        
     }
 
     /**
