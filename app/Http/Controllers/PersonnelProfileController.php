@@ -59,8 +59,7 @@ class PersonnelProfileController extends Controller
         $profile->birth_date = $request->birth_date;
         $profile->hospital_id = $request->hospital_id;
         $profile->contact_number = $request->contact_number;
-        $path = $request->file('image')->store('public');
-        $path = explode('/',$path)[1];
+        $path = $request->file('file')->store('files');
         $profile->image_location = $path;
         $profile->save();
         User::create([
