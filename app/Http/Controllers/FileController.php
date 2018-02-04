@@ -26,12 +26,14 @@ class FileController extends Controller
         $file->description = $request->description;
         
         $path = $request->file('file')->store('public');
+        
         $path = explode('/',$path)[1];
         $file->path = $path;
+        return asset("storage/${path}");
         
         $file->personnel_id = session('accountID');
         $file->save();
-        return back();
+        
     }
 
 }
