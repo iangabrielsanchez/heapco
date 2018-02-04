@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use App\File;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,9 @@ class FileController extends Controller
         $file->description = $request->description;
         
         $path = $request->file('file')->store('public');
-        return public_path();
+        
         $path = explode('/',$path)[1];
+        return Storage::url($path);
         $file->path = $path;
         return asset("storage/${path}");
         
