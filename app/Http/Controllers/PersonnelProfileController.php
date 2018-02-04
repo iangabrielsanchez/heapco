@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PersonnelProfile;
+use Storage;
 use App\Hospital;
 use App\User;
 use Illuminate\Http\Request;

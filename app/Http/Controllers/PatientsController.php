@@ -6,6 +6,7 @@ use DB;
 use App\Patient;
 use App\User;
 use App\File;
+use Storage;
 use App\Post;
 use Illuminate\Http\Request;
 
