@@ -73,16 +73,7 @@
 										</div>
 									</div>
 
-									<div class="form-group">
-										<label for="doctor_id" class="col-md-4 control-label">Post As</label>
-										<div class="col-md-6">
-											<select class="form-control" id="doctor_id" name="doctor_id" required>
-												@foreach ($doctors as $doctor)
-												<option value="{{$doctor->id}}">{{$doctor->first_name}} {{$doctor ->last_name}}</option>
-												@endforeach
-											</select>
-										</div>
-									</div>
+									<input type="hidden" name="doctor_id" value="{{session('accountID')}}">
 
 
 

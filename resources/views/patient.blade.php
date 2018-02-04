@@ -42,7 +42,7 @@ Patient Profile
         </div>
         @if( session("accountType")=="doctor")
         <div class="col-md-8">
-            <h3>Posts <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">New Post</button></h3>
+            <h3>Posts <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addPost">New Post</button></h3>
             <div class="well">
             @foreach ($posts as $post)
                 <h4>
@@ -58,6 +58,56 @@ Patient Profile
             </div>
         </div>
         @endif
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="addPost" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Post</h4>
+            </div>
+            <form class="form-horizontal" method="POST" action="/forums">
+                <div class="modal-body">
+
+                    <div class="panel-body">
+
+                        {{ csrf_field() }}
+                        <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                        <input type="hidden" name="doctor_id" value="{{session('accountID')}}">
+
+                        <div class="form-group">
+                            <label for="topic" class="col-md-4 control-label">Topic</label>
+                            <div class="col-md-6">
+                                <input id="topic" type="text" class="form-control" name="topic" required autofocus>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="content" class="col-md-4 control-label">Content</label>
+                            <div class="col-md-6">
+                                <textarea id="content" class="form-control" name="content" rows="10" required autofocus></textarea></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Post
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
 </div>
 
