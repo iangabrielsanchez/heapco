@@ -8,7 +8,7 @@ Personnel Profile
     <h3>{{ $account->type ." ". $account->first_name ." ". $account->last_name }}</h3>
 	<div class="row">
         <div class="col-md-4">
-            <image src="{{'https://s3-ap-southeast-1.amazonaws.com/hau-heapco/'.$account->image_location}}" class="displaypic">
+            <image src="{{'https://s3-ap-southeast-1.amazonaws.com/hau-heapco/files/'.$account->image_location}}" class="displaypic">
         </div>
 		<div class="col-md-8">
             <h3><small>First Name: </small>{{ $account->first_name }} &nbsp;&nbsp; <small>Last Name: </small>{{ $account->last_name }}</h3>
