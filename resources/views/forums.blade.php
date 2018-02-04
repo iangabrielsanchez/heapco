@@ -74,7 +74,7 @@
 									</div>
 
 									<input type="hidden" name="doctor_id" value="{{session('accountID')}}">
-
+									<input type="hidden" name="status" value="open">
 
 
 								</div>
