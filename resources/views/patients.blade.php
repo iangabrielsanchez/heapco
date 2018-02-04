@@ -42,6 +42,13 @@
 									</div>
 
 									<div class="form-group">
+										<label for="middle_name" class="col-md-4 control-label">Middle Name</label>
+										<div class="col-md-6">
+											<input id="middle_name" type="text" class="form-control" name="middle_name" required autofocus>
+										</div>
+									</div>
+
+									<div class="form-group">
 										<label for="last_name" class="col-md-4 control-label">Last Name</label>
 										<div class="col-md-6">
 											<input id="last_name" type="text" class="form-control" name="last_name" required autofocus>
@@ -134,6 +141,7 @@
 		columns:[
 			{data:"id",title:"ID", visible:false},
 			{data:"first_name",title:"First Name"},
+			{data:"middle_name",title:"Middle Name"},
 			{data:"last_name",title:"Last Name"},
 			{data:"sex",title:"Sex"},
 			{data:"birth_date",title:"Birth date"}

@@ -55,6 +55,7 @@ class PatientsController extends Controller
         $patient->email = $request->email;
         $patient->address = $request->address;
         $patient->first_name = $request->first_name;
+        $patient->middle_name = $request->middle_name;
         $patient->last_name = $request->last_name;
         $patient->sex = $request->sex;
         $patient->birth_date = $request->birth_date;

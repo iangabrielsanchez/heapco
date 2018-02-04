@@ -50,8 +50,10 @@
 				<li class="sidebar-brand">
 					<a href="/">
 						<h3>HeapCo
-							<i class="fa fa-bars" id='menu' aria-hidden="true"></i>
+							{{--  <i class="fa fa-bars" id='menu' aria-hidden="true"></i>  --}}
+							<i class="fa fa-stethoscope" id ='menu'></i>
 						</h3>
+					</a>
 				</li>
 				@if (session('accountType') == 'doctor')
 				<li>
@@ -124,7 +126,7 @@
 			<div class="container-fluid">
 				<ul class="nav navbar-nav navbar-right">
 					<a class="navbar-brand" href="#">
-						<h3>Hospital Management System</h3>
+						<h3>Healthcare Practitioner's Companion</h3>
 					</a>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">

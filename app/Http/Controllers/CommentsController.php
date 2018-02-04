@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -35,12 +36,22 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->comment == '/close'){
+            $post = Post::find($request->post_id);
+            if($post->doctor_id == session('accountID')){
+                $post->status = "closed";
+                $post->save();
+                return back();
+            }
+        }
+
         $comment = new Comment;
         $comment->post_id = $request->post_id;
         $comment->doctor_id = $request->doctor_id;
         $comment->comment = $request->comment;
         $comment->save();
         return back();
+
     }
 
     /**

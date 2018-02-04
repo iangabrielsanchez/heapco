@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->integer('patient_id')->unsigned();
             $table->string('topic');
             $table->longText('content');
+            $table->string('status');
             $table->timestamps();
         });
     }

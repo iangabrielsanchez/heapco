@@ -21,6 +21,7 @@
 			<a href="/accounts/{{$post->personnel_id}}">{{$comment->personnel_first_name}} {{$comment->personnel_last_name}}</a> at {{$comment->created_at}}</p>
 			{{$comment->comment}}
 			<hr/> @endforeach
+			@if($post->status != 'closed')
 			<form class="form-horizontal" method="POST" action="/comments">
 				{{ csrf_field() }}
 				<h4>Add comment:</h4>
@@ -28,13 +29,20 @@
 				<input type="hidden" name="doctor_id" value="{{session('accountID')}}">
 				<div class="form-group">
 					<div class="col-md-8">
-						<textarea id="comment" class="form-control" name="comment" rows="5" required autofocus></textarea>
+						@if($post->doctor_id == session('accountID'))
+						<textarea id="comment" class="form-control" name="comment" rows="5" placeholder="Type your comment...To close this thread, comment /close" required autofocus></textarea>
+						@else
+						<textarea id="comment" class="form-control" name="comment" rows="5" placeholder="Type your comment..." required autofocus></textarea>
+						@endif
 					</div>
 				</div>
 				<button type="submit" class="btn btn-primary">
 					Comment
 				</button>
 			</form>
+			@else
+			<p>***This thread has been closed***</p>
+			@endif
 		</div>
 
 	</div>

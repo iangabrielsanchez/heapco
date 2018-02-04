@@ -79,6 +79,7 @@ class PostsController extends Controller
         $post->patient_id = $request->patient_id;
         $post->topic = $request->topic;
         $post->content = $request->content;
+        $post->status = $request->status;
         $post->save();
         return back();
 

@@ -54,7 +54,8 @@
 								</button>
 								<a class="btn btn-link" href="{{ url('/password/reset') }}">
 									Forgot Your Password?
-								</a>
+								</a><br/>
+								<small>If you want to have a new account, contact: 0187498739</small>
 							</div>
 						</div>
 					</form>

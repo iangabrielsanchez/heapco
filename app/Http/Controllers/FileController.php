@@ -25,18 +25,24 @@ class FileController extends Controller
 
         $path = $request->file('file')->store('files');
         Storage::setVisibility($path, 'public');
-        //files/IY6NmjIC8kj7p18oLZrhpsvJ44PKj3apGc1MkV8p.png
-
-        
         $file = new File;
         $file->patient_id = $request->patient_id;
         $file->title = $request->title;
         $file->description = $request->description;
+        $file->status = $request->status;
         $file->path = $path;
         $file->personnel_id = session('accountID');
         $file->save();
         return back();
         
+    }
+
+
+    public function update($id){
+        $file = File::find($id);
+        $file->status = $file->status == 'enabled'? 'disabled': 'enabled';
+        $file->save();
+        return back();
     }
 
 }

@@ -5,13 +5,13 @@ Patient Profile
 @section('content')
 
 <div class="container-fluid">
-    <h3>{{ $patient->first_name ." ". $patient->last_name }}</h3>
+    <h3>{{ $patient->first_name ." ".$patient->middle_name." ". $patient->last_name }}</h3>
 	<div class="row">
         <div class="col-md-4">
             <image src="{{'https://s3-ap-southeast-1.amazonaws.com/hau-heapco/'.$patient->image_location}}" class="displaypic">
         </div>
 		<div class="col-md-8">
-            <h3><small>First Name: </small>{{ $patient->first_name }} &nbsp;&nbsp; <small>Last Name: </small>{{ $patient->last_name }}</h3>
+            <h3><small>First Name: </small>{{ $patient->first_name }} &nbsp;&nbsp;<small>Middle Name:</small>{{$patient->middle_name}} <small>Last Name: </small>{{ $patient->last_name }}</h3>
             <h3><small>Sex: </small> {{ $patient->sex }} &nbsp;&nbsp; <small>Date of birth: </small>{{ $patient->birth_date }}</h3>
             <h3><small>Address: </small>{{$patient->address }}</h3>
             <h3><small>Contact number: </small>{{$patient->contact_number }}</h3>
@@ -28,13 +28,36 @@ Patient Profile
             </h3>
             <div class="well">
             @foreach($files as $file)
-                <a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$file->path}}">
-                    <h4>
+            <?php $uploader = App\PersonnelProfile::where('id',$file->personnel_id)->first();?>
+            <?php $user = App\PersonnelProfile::find(session('accountID')); ?>
+            @if($file->status == 'enabled')
+                <h4>
+                    @if(
+                        ($uploader->type . " ". $uploader->first_name . " " . $uploader->last_name) == 
+                        ($user->type . " ". $user->first_name . " " . $user->last_name)
+                    )
+                    <a href="/files/{{$file->id}}/toggle"><i class="fa fa-unlock"></i></a>
+                    @endif
+                    <a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$file->path}}">
+                        
                         {{$file->title}}<br/>
                         <small>{{$file->description}}</small>
-                    </h4>
-                </a>
-                <?php $uploader = App\PersonnelProfile::where('id',$file->personnel_id)->first();?>
+                    </a>
+                </h4>
+                @else
+                <h4>
+                    <p>
+                        @if(
+                            ($uploader->type . " ". $uploader->first_name . " " . $uploader->last_name) == 
+                            ($user->type . " ". $user->first_name . " " . $user->last_name)
+                        )
+                        <a href="/files/{{$file->id}}/toggle"><i class="fa fa-lock"></i></a>
+                        @endif
+                        {{$file->title}}<br/>
+                        <small>{{$file->description}}</small>
+                    </p>
+                </h4>
+                @endif
                 <p>Uploaded by: {{$uploader->type . " ". $uploader->first_name . " " . $uploader->last_name}}</p>
                 <hr>
             @endforeach
@@ -47,6 +70,9 @@ Patient Profile
             @foreach ($posts as $post)
                 <h4>
                     <a href='/forums/{{$post->id}}'>{{$post->topic}}</a>
+                    @if($post->status == "closed")
+                    (closed)
+                    @endif
                     <small>
                         <p class="text-muted">By
                             <a href="/accounts/{{$post->personnel_id}}">{{$post->personnel_first_name}} {{$post->personnel_last_name}}</a> at {{$post->created_at}}</p>
@@ -79,7 +105,7 @@ Patient Profile
                         {{ csrf_field() }}
                         <input type="hidden" name="patient_id" value="{{$patient->id}}">
                         <input type="hidden" name="doctor_id" value="{{session('accountID')}}">
-
+                        <input type="hidden" name="status" value="open">
                         <div class="form-group">
                             <label for="topic" class="col-md-4 control-label">Topic</label>
                             <div class="col-md-6">
@@ -147,6 +173,16 @@ Patient Profile
                             <label for="file" class="col-md-4 control-label">File</label>
                             <div class="col-md-6">
                                 <input id="file" type="file" class="form-control" name="file" accept="image/*,.pdf,.doc,.docx,.rtf,.txt" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status" class="col-md-4 control-label">Visibility</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="status" name="status" required>
+                                    <option value="enabled">Public</option>
+                                    <option value="disabled">Only Me</option>
+                                </select>
                             </div>
                         </div>
                         

@@ -25,6 +25,7 @@ Route::resource('forums', 'PostsController');
 Route::post('/comments', 'CommentsController@store');
 Route::post('/fileUpload', 'FileController@store');
 Route::get('/files/{id}', 'FileController@index');
+Route::get('/files/{id}/toggle', 'FileController@update');
 
 Route::get('/layout', function(){
     return view('layouts.app');
