@@ -25,19 +25,10 @@
 				{{ csrf_field() }}
 				<h4>Add comment:</h4>
 				<input type="hidden" name="post_id" value="{{$post->id}}">
+				<input type="hidden" name="doctor_id" value="{{session('accountID')}}">
 				<div class="form-group">
 					<div class="col-md-8">
 						<textarea id="comment" class="form-control" name="comment" rows="5" required autofocus></textarea>
-					</div>
-				</div>
-				<b>Post as</b>
-				<div class="form-group">
-					<div class="col-md-4">
-						<select class='form-control' name='doctor_id'>
-							@foreach($doctors as $doctor)
-							<option value=" {{$doctor->id}}">{{$doctor->first_name}} {{$doctor ->last_name}}</option>
-							@endforeach
-						</select>
 					</div>
 				</div>
 				<button type="submit" class="btn btn-primary">

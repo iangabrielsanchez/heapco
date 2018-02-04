@@ -23,6 +23,8 @@ Route::resource('patients', 'PatientsController');
 Route::resource('hospitals', 'HospitalsController');
 Route::resource('forums', 'PostsController');
 Route::post('/comments', 'CommentsController@store');
+Route::post('/fileUpload', 'FileController@store');
+Route::get('/files/{id}', 'FileController@index');
 
 Route::get('/layout', function(){
     return view('layouts.app');
@@ -30,10 +32,6 @@ Route::get('/layout', function(){
 
 Route::get('/simplified', function(){
     return view('layouts.simplified');
-});
-
-Route::get('/profile', function(){
-    return view('profile');
 });
 
 Route::get('/mail', function(){

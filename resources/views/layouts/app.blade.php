@@ -24,20 +24,73 @@
 </head>
 
 <body>
+	@if(session('accountType') === null)
+		@if((
+			($var = App\PersonnelProfile::where('email', Auth::user()->email)
+				->where('type','Doctor'))->count()) > 0)
+			<?php session(['accountType' => 'doctor']); ?>
+			<?php session(['accountID' => $var->first()->id]); ?>
+			
+		@elseif((
+			($var = App\PersonnelProfile::where('email', Auth::user()->email)
+				->where('type','Nurse'))->count()) > 0)
+			<?php session(['accountType' => 'nurse']); ?>
+			<?php session(['accountID' => $var->first()->id]); ?>
+		@elseif((
+			($var = App\Patient::where('email', Auth::user()->email))->count()) > 0)
+			<?php session(['accountType' => 'patient']); ?>
+			<?php session(['accountID' => $var->first()->id]); ?>
+		@else
+			<?php session(['accountType' => 'admin']); ?>
+		@endif
+	@endif
 	<div id="app">
 		<nav class="navbar navbar-default navbar-fixed-top nav1">
 			<ul class="nav sidebar-nav">
 				<li class="sidebar-brand">
-					<a href="#">
-
+					<a href="/">
 						<h3>HeapCo
 							<i class="fa fa-bars" id='menu' aria-hidden="true"></i>
 						</h3>
 				</li>
-				<li class="active">
-					<a href="/home">
-						<i class="fa fa-home fa-2x" id='navicon' aria-hidden="true"></i>
-						Home
+				@if (session('accountType') == 'doctor')
+				<li>
+					<a href="/forums">
+						<i class="fa fa-comments fa-2x" id='navicon' aria-hidden="true"></i>
+						Forums
+					</a>
+				</li>
+				<li>
+					<a href="/patients">
+						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
+						Patients
+					</a>
+				</li>
+				@elseif (session('accountType') == 'nurse')
+				<li>
+					<a href="/patients">
+						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
+						Patients
+					</a>
+				</li>
+				@elseif (session('accountType') == 'patient')
+				<li>
+					<a href="/patients/{{session('accountID')}}">
+						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
+						Patient Profile
+					</a>
+				</li>
+				@elseif (session('accountType') == 'admin')
+				<li>
+					<a href="/forums">
+						<i class="fa fa-comments fa-2x" id='navicon' aria-hidden="true"></i>
+						Forums
+					</a>
+				</li>
+				<li>
+					<a href="/hospitals">
+						<i class="fa fa-hospital-o fa-2x" id='navicon' aria-hidden="true"></i>
+						Hospitals List
 					</a>
 				</li>
 				<li>
@@ -49,19 +102,7 @@
 				<li>
 					<a href="/patients">
 						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
-						Patient Accounts
-					</a>
-				</li>
-				<li>
-					<a href="/hospitals">
-						<i class="fa fa-hospital-o fa-2x" id='navicon' aria-hidden="true"></i>
-						Hospitals List
-					</a>
-				</li>
-				<li>
-					<a href="/forums">
-						<i class="fa fa-comments fa-2x" id='navicon' aria-hidden="true"></i>
-						Forums
+						Patient Profile
 					</a>
 				</li>
 				<li>
@@ -75,6 +116,8 @@
 						<i>Information</i>
 					</a>
 				</li>
+				@endif
+				
 			</ul>
 		</nav>
 		<nav class="navbar navbar-default navbar-fixed-top nav2">
@@ -90,7 +133,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="/profile">My Profile</a>
+								<a href="{{'/accounts/'.session('accountID')}}">My Profile</a>
 							</li>
 							<li>
 								<a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -178,24 +221,6 @@
 					@yield('pageTitle')
 				</h3>
 			</section>
-			{{--  @if((
-				App\PersonnelProfile::where('email', Auth::user()->email)
-					->where('type','Doctor'))->count() > 0)
-				<p>Hello world!</p>
-			@elseif((
-				App\PersonnelProfile::where('email', Auth::user()->email)
-					->where('type','Nurse'))->count() > 0)
-					<p>yey</p>
-			@elseif((
-				App\Patient::where('email', Auth::user()->email))->count() > 0)
-				<p>pasensya</p>
-			@else
-				<p>non found</p>
-
-			@endif!  --}}
-			@if(session('accountType') !==null) //if session key: accountType,  is not null, apply the logic above
-				{{App\Patient::all()}}
-			@endif
 			@yield('content')
 		</div>
 	</div>

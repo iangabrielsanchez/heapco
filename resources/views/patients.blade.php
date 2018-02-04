@@ -27,7 +27,7 @@
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">Patients</h4>
 						</div>
-						<form class="form-horizontal" method="POST" action="">
+						<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
 							<div class="modal-body">
 
 								<div class="panel-body">
@@ -86,9 +86,22 @@
 										</div>
 									</div>
 
-								</div>
-							</div>
+									<div class="form-group">
+										<label for="image" class="col-md-4 control-label">Image</label>
+										<div class="col-md-6">
+											<input id="image" type="file" class="form-control" name="image" accept=".jpeg,.jpg,.png,.bmp" required autofocus>
+										</div>
+										
+										<small class="col-md-6 col-md-offset-4">
+											<br/>Note: The patient's password will be lowercase lastname + year of birth.
+											<br/>Example for Juan Masipag born in 1990: masipag1990
+										</small>
+									</div>
 
+								</div>
+
+							</div>
+							
 							<div class="modal-footer">
 								<button type="submit" class="btn btn-primary">
 									Add Patient
@@ -108,9 +121,18 @@
 @endsection @section('script') {{--
 <script src="{{ asset('/js/datatables/patients.js') }}"></script> --}}
 <script>
+	$(document).ready(function() {
+		var table = $('#tblPatients').DataTable();
+
+		$('#tblPatients tbody').on('click', 'tr', function () {
+		var data = table.row( this ).data();
+		window.location="/patients/"+data.id;
+		});
+	});
 	$('#tblPatients').DataTable({
 		data: {!!$patients!!},
 		columns:[
+			{data:"id",title:"ID", visible:false},
 			{data:"first_name",title:"First Name"},
 			{data:"last_name",title:"Last Name"},
 			{data:"sex",title:"Sex"},

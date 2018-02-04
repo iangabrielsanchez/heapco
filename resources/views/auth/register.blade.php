@@ -1,12 +1,14 @@
-@extends('layouts.simplified') 
+@extends(Auth::user() ? 'layouts.app' : 'layouts.simplified')
+
+
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
+    
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 margin-top-30">
-            <h2><a href="/">HeapCo</a> | Register</h2>
+        <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading"><h3>Register New Admin</h3></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">

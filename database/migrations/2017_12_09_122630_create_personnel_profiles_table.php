@@ -24,6 +24,7 @@ class CreatePersonnelProfilesTable extends Migration
             $table->date('birth_date');
             $table->integer('hospital_id')->unsigned();
             $table->string('contact_number');
+            $table->string('image_location');
             $table->timestamps();
         });
     }

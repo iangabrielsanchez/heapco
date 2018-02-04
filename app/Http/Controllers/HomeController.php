@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(session("accountType") == "patient"){
+            return redirect("/patients/".session('accountID'));
+        }
+        else if(session("accountType") == "doctor"){
+            return redirect("/forums");
+        }
+        else if(session("accountType") == "nurse"){            
+            return redirect("/patients");
+        }
         return view('home');
     }
 }

@@ -22,6 +22,7 @@ class CreatePatientsTable extends Migration
             $table->string('address');
             $table->string('contact_number');
             $table->string('email');
+            $table->string('image_location');
             $table->timestamps();
         });
     }
