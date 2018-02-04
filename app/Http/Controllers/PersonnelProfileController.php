@@ -60,6 +60,7 @@ class PersonnelProfileController extends Controller
         $profile->hospital_id = $request->hospital_id;
         $profile->contact_number = $request->contact_number;
         $path = $request->file('image')->store('files');
+        Storage::setVisibility($path, 'public');
         $profile->image_location = $path;
         $profile->save();
         User::create([

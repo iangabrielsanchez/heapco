@@ -24,6 +24,7 @@ class FileController extends Controller
         
 
         $path = $request->file('file')->store('files');
+        Storage::setVisibility($path, 'public');
         //files/IY6NmjIC8kj7p18oLZrhpsvJ44PKj3apGc1MkV8p.png
 
         

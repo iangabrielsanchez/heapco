@@ -59,6 +59,7 @@ class PatientsController extends Controller
         $patient->birth_date = $request->birth_date;
         $patient->contact_number = $request->contact_number;
         $path = $request->file('image')->store('files');
+        Storage::setVisibility($path, 'public');
         $patient->image_location = $path;
         $patient->save();
         User::create([
