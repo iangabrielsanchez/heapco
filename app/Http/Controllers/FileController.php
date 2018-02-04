@@ -21,20 +21,26 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        $file = new File;
-        $file->patient_id = $request->patient_id;
-        $file->title = $request->title;
-        $file->description = $request->description;
+        $file = $request->file('file');
+        $fileName = hash("md5",str_random(40)).$file->getClientOriginalName();
+        $file->move("files", $fileName);
+        return $file;
+        // $file = new File;
+        // $file->patient_id = $request->patient_id;
+        // $file->title = $request->title;
+        // $file->description = $request->description;
         
-        $path = $request->file('file')->store('public');
+        // $path = $request->file('file');
+        // $fileName = explode('/',$path)[1];
+        // $path = $path->move(public_path(),$fileName);
+        // return $path;
+        // $fileName = explode('/',$path)[1];
+        // return Storage::url($path);
+        // $file->path = $path;
+        // return asset("storage/${path}");
         
-        $path = explode('/',$path)[1];
-        return Storage::url($path);
-        $file->path = $path;
-        return asset("storage/${path}");
-        
-        $file->personnel_id = session('accountID');
-        $file->save();
+        // $file->personnel_id = session('accountID');
+        // $file->save();
         
     }
 
