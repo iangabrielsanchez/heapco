@@ -23,6 +23,7 @@ Route::resource('patients', 'PatientsController');
 Route::resource('hospitals', 'HospitalsController');
 Route::resource('forums', 'PostsController');
 Route::resource('records', 'RecordsController');
+Route::resource('appointments', 'AppointmentsController');
 Route::post('/comments', 'CommentsController@store');
 Route::post('/fileUpload', 'FileController@store');
 Route::get('/files/{id}', 'FileController@index');
