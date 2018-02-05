@@ -63,8 +63,29 @@ Patient Profile
             @endforeach
             </div>
         </div>
+        <div class="col-md-4">
+            <h3>Records <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newRecord">New Record</button></h3>
+            <div class="well">
+                @foreach ($records as $record)
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse{{$record->id}}">Record At: {{$record->created_at}}</a>
+                            </h4>
+                        </div>
+                        <div id="collapse{{$record->id}}" class="panel-collapse collapse">
+                        <div class="panel-body">{{$record->records}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                @endforeach
+            </div>
+        </div>
+
         @if( session("accountType")=="doctor")
-        <div class="col-md-8">
+        <div class="col-md-4">
             <h3>Posts <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addPost">New Post</button></h3>
             <div class="well">
             @foreach ($posts as $post)
@@ -127,6 +148,47 @@ Patient Profile
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
                         Post
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="newRecord" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Record</h4>
+            </div>
+            <form class="form-horizontal" method="POST" action="/records">
+                <div class="modal-body">
+
+                    <div class="panel-body">
+
+                        {{ csrf_field() }}
+                        <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                        <input type="hidden" name="doctor_id" value="{{session('accountID')}}">
+                        <div class="form-group">
+                            <label for="records" class="col-md-4 control-label">Records</label>
+                            <div class="col-md-6">
+                                <textarea id="records" class="form-control" name="records" rows="10" required autofocus></textarea></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Add Record
                     </button>
                 </div>
 

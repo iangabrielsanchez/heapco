@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Patient;
 use App\User;
+use App\Record;
 use App\File;
 use Storage;
 use App\Post;
@@ -106,10 +107,12 @@ class PatientsController extends Controller
                 'patients.contact_number as patient_contact_number',
                 'patients.email as patient_email')
             ->get();
+        $records = Record::where('patient_id',$patient->id)->get();
         return view('patient')
             ->with(compact('patient'))
             ->with(compact('files'))
-            ->with(compact('posts'));
+            ->with(compact('posts'))
+            ->with(compact('records'));
     }
 
     /**

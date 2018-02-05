@@ -32,6 +32,16 @@ class HomeController extends Controller
         else if(session("accountType") == "nurse"){            
             return redirect("/patients");
         }
+
+        // $events[] = \Calendar::event(
+        //     "Sample",
+        //     true,
+        //     '2018-02-05T1000',
+        //     '2018-02-05T1200'
+        // );
         return view('home');
+
+        // $calendar = \Calendar::addEvents($events)->setOptions(['firstDay' => 1])->setCallbacks([]);
+        // return view('home', array('calendar'=>$calendar));
     }
 }

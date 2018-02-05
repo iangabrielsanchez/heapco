@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
-                            {{ session('status') }}
+                            {{ $calendar }}
                         </div>
                     @endif
                     Reports will appear here.
@@ -21,3 +21,4 @@
     </div>
 </div>
 @endsection
+
