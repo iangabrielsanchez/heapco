@@ -58,7 +58,7 @@
 									<div class="form-group">
 										<label for="contact_number" class="col-md-4 control-label">Contact Number</label>
 										<div class="col-md-6">
-											<input id="contact_number" type="text" class="form-control" name="contact_number" required autofocus>
+											<input id="contact_number" type="number" class="form-control" name="contact_number" required autofocus>
 										</div>
 									</div>
 
@@ -87,11 +87,11 @@
 											</select>
 										</div>
 									</div>
-
+									
 									<div class="form-group">
 										<label for="birth_date" class="col-md-4 control-label">Birth Date</label>
 										<div class="col-md-6">
-											<input id="birth_date" type="date" class="form-control" name="birth_date" required autofocus>
+											<input id="birth_date" type="date" class="form-control" name="birth_date" max='{{date('Y-m-d')}}' min="{{date('Y-m-d', strtotime('-150 year'))}}" required autofocus>
 										</div>
 									</div>
 
@@ -145,6 +145,13 @@
 @endsection @section('script') {{--
 <script src="{{ asset('/js/datatables/patients.js') }}"></script> --}}
 <script>
+
+	document.querySelector("#contact_number").addEventListener("keypress", function (evt) {
+		if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57)
+		{
+			evt.preventDefault();
+		}
+	});
 	$(document).ready(function() {
 		var table = $('#tblAccounts').DataTable();
 

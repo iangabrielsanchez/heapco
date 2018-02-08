@@ -2,8 +2,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-
-
 			<h4>
 				<a href='/forums/{{$post->id}}'>{{$post->topic}}</a>
 				<small>

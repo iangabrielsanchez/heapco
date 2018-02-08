@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use DB;
 use App\Post;
 use App\Comment;
@@ -80,6 +81,12 @@ class PostsController extends Controller
         $post->topic = $request->topic;
         $post->content = $request->content;
         $post->status = $request->status;
+        $path = null;
+        if ($request->file('file') !== null){
+            $path = $request->file('file')->store('files');
+            Storage::setVisibility($path, 'public');
+        }
+        $post->file_location = $path;
         $post->save();
         return back();
 
@@ -133,6 +140,8 @@ class PostsController extends Controller
             ->get();
         $patients = Patient::all();
         $doctors = PersonnelProfile::all();
+        // if ($post->file_location)
+        // return compact('post');
         return view('post', compact('post'))->with(compact('patients'))->with(compact('doctors'))->with(compact('comments'));
     }
 

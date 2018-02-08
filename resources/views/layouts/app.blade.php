@@ -19,8 +19,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
-
-
+	<link rel="shortcut icon" type="image/png" href="" >
 </head>
 
 <body>
