@@ -17,7 +17,7 @@
 				<img src="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$post->file_location}}" width="100%"></a>
 				
 				<hr/>
-			@else
+			@elseif ($post->file_location)
 				<a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$post->file_location}}"><i class="fa fa-paperclip"></i> Post attachment</a>
 				<hr/>
 			@endif

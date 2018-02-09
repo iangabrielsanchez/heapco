@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Storage;
-use App\Record;
+use App\Relationship;
 use Illuminate\Http\Request;
 
-class RecordsController extends Controller
+class RelationshipsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return Record::where('patient_id',$request->id)->get();
+        //
     }
 
     /**
@@ -36,40 +35,27 @@ class RecordsController extends Controller
      */
     public function store(Request $request)
     {
-        $record = new Record;
-        $record->patient_id = $request->patient_id;
-        $record->doctor_id = $request->doctor_id;
-        $record->title = $request->title;
-        $record->type = $request->record_type;
-        $path = null;
-        if ($request->file('file') !== null){
-            $path = $request->file('file')->store('files');
-            Storage::setVisibility($path, 'public');
-        }
-        $record->file_location = $path;
-        $record->records = $request->records;
-        $record->save();
-        return back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Record  $record
+     * @param  \App\Relationship  $relationship
      * @return \Illuminate\Http\Response
      */
-    public function show(Record $record)
+    public function show(Relationship $relationship)
     {
-        return view('record', compact('record'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Record  $record
+     * @param  \App\Relationship  $relationship
      * @return \Illuminate\Http\Response
      */
-    public function edit(Record $record)
+    public function edit(Relationship $relationship)
     {
         //
     }
@@ -78,10 +64,10 @@ class RecordsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Record  $record
+     * @param  \App\Relationship  $relationship
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Record $record)
+    public function update(Request $request, Relationship $relationship)
     {
         //
     }
@@ -89,10 +75,10 @@ class RecordsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Record  $record
+     * @param  \App\Relationship  $relationship
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Record $record)
+    public function destroy(Relationship $relationship)
     {
         //
     }

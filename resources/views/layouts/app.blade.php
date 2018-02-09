@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css" /> @yield('styles')
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet">
-
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
 	<link rel="shortcut icon" type="image/png" href="" >
 </head>
@@ -234,7 +234,7 @@
 
 	<!-- Scripts -->
 	<script src="{{ asset('js/app.js') }}"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
 	@yield('script')
 </body>

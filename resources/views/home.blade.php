@@ -44,13 +44,13 @@
                         <div class="form-group">
                             <label for="event" class="col-md-4 control-label">Start Time</label>
                             <div class="col-md-6">
-                                <input id="startTime" type="datetime-local" class="form-control" name="startTime" required autofocus>
+                                <input id="startTime" type="datetime-local" class="form-control" value="{{date('Y-m-d\TH:i')}}" name="startTime" required autofocus>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="event" class="col-md-4 control-label">End Time</label>
                             <div class="col-md-6">
-                                <input id="endTime" type="datetime-local" class="form-control" name="endTime" required autofocus>
+                                <input id="endTime" type="datetime-local" class="form-control" value="{{date('Y-m-d\TH:i')}}" name="endTime" required autofocus>
                             </div>
                         </div>
 

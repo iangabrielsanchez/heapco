@@ -17,6 +17,9 @@ class CreateRecordsTable extends Migration
             $table->increments('id');
             $table->integer('patient_id');
             $table->integer('doctor_id');
+            $table->string('type');
+            $table->string('title');
+            $table->string('file_location')->nullable();
             $table->string('records');
             $table->timestamps();
         });

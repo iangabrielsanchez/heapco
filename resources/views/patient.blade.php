@@ -75,11 +75,21 @@ Patient Profile
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse{{$record->id}}">Record At: {{$record->created_at}}</a>
+                                <a data-toggle="collapse" href="#collapse{{$record->id}}">{{$record->type}}: {{$record->title}}<small> at {{$record->created_at}}</small></a>
                             </h4>
                         </div>
                         <div id="collapse{{$record->id}}" class="panel-collapse collapse">
-                        <div class="panel-body">{{$record->records}}</div>
+                        <div class="panel-body">
+                            @if (\App\Http\Controllers\PatientsController::endsWith($record->file_location, [".jpg",".jpeg",".gif",".png",".bmp"]))
+                            <a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$record->file_location}}"><i class="fa fa-paperclip"></i>Post attachments
+                            <img src="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$record->file_location}}" width="100%"></a>
+                            <hr/>
+                            @elseif ($record->file_location)
+                            <a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$record->file_location}}"><i class="fa fa-paperclip"></i> Post attachment</a>
+                            <hr/>
+                            @endif
+                            {{$record->records}}
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -179,7 +189,7 @@ Patient Profile
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">New Record</h4>
             </div>
-            <form class="form-horizontal" method="POST" action="/records">
+            <form class="form-horizontal" method="POST" action="/records" enctype="multipart/form-data">
                 <div class="modal-body">
 
                     <div class="panel-body">
@@ -188,9 +198,35 @@ Patient Profile
                         <input type="hidden" name="patient_id" value="{{$patient->id}}">
                         <input type="hidden" name="doctor_id" value="{{session('accountID')}}">
                         <div class="form-group">
+                            <label for="record_type" class="col-md-4 control-label">Record Type</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="record_type" name="record_type" required>
+                                    <option value="Diagnosis">Diagnosis</option>
+                                    <option value="Results">Lab Test Results</option>
+                                    <option value="Vital Signs">Vital Signs</option>
+                                    <option value="Medications">Medications</option>
+                                    <option value="Surgeries">Surgeries</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-md-4 control-label">Title</label>
+                            <div class="col-md-6">
+                                <input id="title" type="text" class="form-control" name="title" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="records" class="col-md-4 control-label">Records</label>
                             <div class="col-md-6">
                                 <textarea id="records" class="form-control" name="records" rows="10" required autofocus></textarea></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file" class="col-md-4 control-label">Attachment</label>
+                            <div class="col-md-6">
+                                <input id="file" type="file" class="form-control" name="file" accept="image/*,.pdf,.doc,.docx,.rtf,.txt" autofocus>
                             </div>
                         </div>
 

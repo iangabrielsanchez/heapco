@@ -148,19 +148,6 @@ class PostsController extends Controller
         return view('post', compact('post'))->with(compact('patients'))->with(compact('doctors'))->with(compact('comments'))->with(compact('withImage'));
     }
 
-    private function endsWith($string, $testArray) {
-        foreach($testArray as $test){
-            $string = strtolower($string);
-            $test = strtolower($test);
-            $strlen = strlen($string);
-            $testlen = strlen($test);
-            if ($testlen > $strlen) continue;
-            if (substr_compare($string, $test, $strlen - $testlen, $testlen) !== 0) continue;
-            return true;
-        }
-        return false;
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -193,5 +180,18 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function endsWith($string, $testArray) {
+        foreach($testArray as $test){
+            $string = strtolower($string);
+            $test = strtolower($test);
+            $strlen = strlen($string);
+            $testlen = strlen($test);
+            if ($testlen > $strlen) continue;
+            if (substr_compare($string, $test, $strlen - $testlen, $testlen) !== 0) continue;
+            return true;
+        }
+        return false;
     }
 }

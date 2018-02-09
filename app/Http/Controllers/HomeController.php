@@ -26,54 +26,38 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $events[] = \Calendar::event(
-            "Sample",
-            true,
-            '1960-02-06T00:00',
-            '1960-02-07T00:00'
+        //add a really old appointment
+        $temp[] = \Calendar::event(
+            "work",
+            false,
+            "1886-01-01T00:00:00",
+            "1886-01-01T00:00:00"
         );
+        $calendar = \Calendar::addEvents($temp)->setOptions(['firstDay' => 1])->setCallbacks([]);
         if(session("accountType") == "patient"){
             return redirect("/patients/".session('accountID'));
         }
         else if(session("accountType") == "doctor"){
-            return redirect("/forums");
-            $events[] = \Calendar::event(
-                "Sample",
-                true,
-                '1960-02-06T00:00',
-                '1960-02-07T00:00'
-            );
-
-            $as = Appointment::where('doctor_id',1)->get();
-
-            foreach($as as $a){
-                $temp = \Calendar::event(
-                    "Sample",
+            $appointments = Appointment::where('doctor_id',session('accountID'))->get();
+            // return $as;
+            foreach($appointments as $appointment){
+                $temp[] = \Calendar::event(
+                    $appointment->event,
                     false,
-                    '2018-02-06T00:00',
-                    '2018-02-07T00:00'
+                    $appointment->startTime,
+                    $appointment->endTime
                 );
-                // $events = array_merge($temp, $events);
-
-                array_push($events, $temp);
+                $calendar = \Calendar::addEvents($temp)->setOptions(['firstDay' => 1])->setCallbacks([]);
             }
-            // return $events;
-            // $event2[] = \Calendar::event(
-            //     "Sample",
-            //     true,
-            //     '2018-02-06T00:00',
-            //     '2018-02-07T00:00'
-            // );
-            // return $events;
-            // return view('home');
-
-            $calendar = \Calendar::addEvents($events)->setOptions(['firstDay' => 1])->setCallbacks([]);
+            
+            
+            //$calendar = \Calendar::addEvents($events2)->setOptions(['firstDay' => 1])->setCallbacks([]);
             return view('home', array('calendar'=>$calendar));
         }
         else if(session("accountType") == "nurse"){            
             return redirect("/patients");
         }
-        $calendar = \Calendar::addEvents($events)->setOptions(['firstDay' => 1])->setCallbacks([]); 
+
         return view('home', array('calendar'=>$calendar));
     }
 }

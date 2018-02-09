@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateRelationshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('relationships', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('doctor_id')->unsigned();
-            $table->integer('patient_id')->unsigned();
-            $table->string('topic');
-            $table->longText('content');
-            $table->string('file_location')->nullable();
-            $table->string('status');
+            $table->integer('doctor_id');
+            $table->integer('patient_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('relationships');
     }
 }
