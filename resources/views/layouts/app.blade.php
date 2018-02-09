@@ -63,8 +63,14 @@
 				</li>
 				<li>
 					<a href="/patients">
+						<i class="fa fa-users fa-2x" id='navicon' aria-hidden="true"></i>
+						Patients List
+					</a>
+				</li>
+				<li>
+					<a href="/patients">
 						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
-						Patients
+						My Patients
 					</a>
 				</li>
 				@elseif (session('accountType') == 'nurse')

@@ -40,7 +40,7 @@
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">New Post</h4>
 						</div>
-						<form class="form-horizontal" method="POST" action="">
+						<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
 							<div class="modal-body">
 
 								<div class="panel-body">
@@ -70,6 +70,13 @@
 										<label for="content" class="col-md-4 control-label">Content</label>
 										<div class="col-md-6">
 											<textarea id="content" class="form-control" name="content" rows="10" required autofocus></textarea></textarea>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="file" class="col-md-4 control-label">File</label>
+										<div class="col-md-6">
+											<input id="file" type="file" class="form-control" name="file" accept="image/*,.pdf,.doc,.docx,.rtf,.txt" autofocus>
 										</div>
 									</div>
 
