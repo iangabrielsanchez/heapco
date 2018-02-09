@@ -31,7 +31,7 @@
 							<div class="modal-body">
 
 								<div class="panel-body">
-
+ 
 									{{ csrf_field() }}
 
 									<div class="form-group">

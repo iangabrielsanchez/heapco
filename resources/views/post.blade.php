@@ -11,6 +11,16 @@
 						<a href="/accounts/{{$post->personnel_id}}">{{$post->personnel_first_name}} {{$post->personnel_last_name}}</a> at {{$post->created_at}}</p>
 				</small>
 			</h4>
+			<hr/>
+			@if ($withImage)
+				<a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$post->file_location}}"><i class="fa fa-paperclip"></i>Post attachments
+				<img src="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$post->file_location}}" width="100%"></a>
+				
+				<hr/>
+			@else
+				<a href="https://s3-ap-southeast-1.amazonaws.com/hau-heapco/{{$post->file_location}}"><i class="fa fa-paperclip"></i> Post attachment</a>
+				<hr/>
+			@endif
 			<p>{{$post->content}}</p>
 			<hr>
 			<div class='container'></div>

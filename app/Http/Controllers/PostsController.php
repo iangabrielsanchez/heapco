@@ -140,18 +140,25 @@ class PostsController extends Controller
             ->get();
         $patients = Patient::all();
         $doctors = PersonnelProfile::all();
-        if (PostsController::endsWith(strtolower($post->file_location), ".png")){
-            return "true";
+        $withImage = false;
+        if (PostsController::endsWith($post->file_location, [".jpg",".jpeg",".gif",".png",".bmp"])){
+            $withImage = true;
         }
-        return compact('post');
-        return view('post', compact('post'))->with(compact('patients'))->with(compact('doctors'))->with(compact('comments'));
+        //return compact('post')->with(compact('withImage'));
+        return view('post', compact('post'))->with(compact('patients'))->with(compact('doctors'))->with(compact('comments'))->with(compact('withImage'));
     }
 
-    private function endsWith($string, $test) {
-        $strlen = strlen($string);
-        $testlen = strlen($test);
-        if ($testlen > $strlen) return false;
-        return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
+    private function endsWith($string, $testArray) {
+        foreach($testArray as $test){
+            $string = strtolower($string);
+            $test = strtolower($test);
+            $strlen = strlen($string);
+            $testlen = strlen($test);
+            if ($testlen > $strlen) continue;
+            if (substr_compare($string, $test, $strlen - $testlen, $testlen) !== 0) continue;
+            return true;
+        }
+        return false;
     }
 
     /**
