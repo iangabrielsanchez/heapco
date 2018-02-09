@@ -64,7 +64,11 @@ Patient Profile
             </div>
         </div>
         <div class="col-md-4">
-            <h3>Records <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newRecord">New Record</button></h3>
+            <h3>Records 
+                @if( session("accountType") != "patient")
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newRecord">New Record</button>
+                @endif
+            </h3>
             <div class="well">
                 @foreach ($records as $record)
                 <div class="panel-group">
