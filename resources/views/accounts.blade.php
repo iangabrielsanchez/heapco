@@ -91,7 +91,7 @@
 									<div class="form-group">
 										<label for="birth_date" class="col-md-4 control-label">Birth Date</label>
 										<div class="col-md-6">
-											<input id="birth_date" type="date" class="form-control" name="birth_date" max='{{date('Y-m-d')}}' min="{{date('Y-m-d', strtotime('-150 year'))}}" required autofocus>
+											<input id="birth_date" type="date" class="form-control" name="birth_date" max="{{date('Y-m-d'), strtotime('-24 year')}}" min="{{date('Y-m-d', strtotime('-150 year'))}}" required autofocus>
 										</div>
 									</div>
 
