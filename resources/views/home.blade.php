@@ -8,7 +8,10 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                @if(session('accountType') === 'doctor')
+                <p>{{session('accountType')}}</p>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">New Appointment</button>
+                @endif
                     <h4>Dashboard</h4>
                 </div>
                 <div class="panel-body">

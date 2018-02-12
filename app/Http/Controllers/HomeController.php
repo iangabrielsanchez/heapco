@@ -34,6 +34,8 @@ class HomeController extends Controller
             "1886-01-01T00:00:00"
         );
         $calendar = \Calendar::addEvents($temp)->setOptions(['firstDay' => 1])->setCallbacks([]);
+
+
         if(session("accountType") == "patient"){
             return redirect("/patients/".session('accountID'));
         }
@@ -57,7 +59,8 @@ class HomeController extends Controller
         else if(session("accountType") == "nurse"){            
             return redirect("/patients");
         }
-        return redirect("/hospitals");
-        // return view('home', array('calendar'=>$calendar));
+        // return redirect("/hospitals");
+        return view('home', array('calendar'=>$calendar));
+        // return session('accountType');
     }
 }
