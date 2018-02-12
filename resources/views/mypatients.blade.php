@@ -137,13 +137,12 @@
 	});
 
 	$(document).ready(function() {
-		@unless(session('accountType') == 'admin')
 		var table = $('#tblPatients').DataTable();
+
 		$('#tblPatients tbody').on('click', 'tr', function () {
 		var data = table.row( this ).data();
 		window.location="/patients/"+data.id;
 		});
-		@endunless
 	});
 	$('#tblPatients').DataTable({
 		data: {!!$patients!!},

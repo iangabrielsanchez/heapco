@@ -6,6 +6,11 @@ Patient Profile
 
 <div class="container-fluid">
     <h3>{{ $patient->first_name ." ".$patient->middle_name." ". $patient->last_name }}</h3>
+    @unless($rel)
+    <a href="/add?doctor_id={{session('accountID')}}&patient_id={{$patient->id}}">Add to my patients</a>
+    @else
+    <small>This person is your patient</small>
+    @endunless
 	<div class="row">
         <div class="col-md-4">
             <image src="{{'https://s3-ap-southeast-1.amazonaws.com/hau-heapco/'.$patient->image_location}}" class="displaypic">
@@ -22,7 +27,7 @@ Patient Profile
     <div class="row">
         <div class="col-md-4">     
             <h3>Files 
-                @if( session("accountType") != "patient")
+                @if( session("accountType") != "patient" && $rel)
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Upload File</button>
                 @endif
             </h3>
@@ -65,7 +70,7 @@ Patient Profile
         </div>
         <div class="col-md-4">
             <h3>Records 
-                @if( session("accountType") != "patient")
+                @if( session("accountType") != "patient" && $rel)
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newRecord">New Record</button>
                 @endif
             </h3>
@@ -98,7 +103,7 @@ Patient Profile
             </div>
         </div>
 
-        @if( session("accountType")=="doctor")
+        @if( session("accountType")=="doctor" && $rel)
         <div class="col-md-4">
             <h3>Posts <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addPost">New Post</button></h3>
             <div class="well">

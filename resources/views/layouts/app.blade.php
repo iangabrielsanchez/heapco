@@ -68,7 +68,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/patients">
+					<a href="/mypatients">
 						<i class="fa fa-user fa-2x" id='navicon' aria-hidden="true"></i>
 						My Patients
 					</a>
@@ -88,12 +88,6 @@
 					</a>
 				</li>
 				@elseif (session('accountType') == 'admin')
-				<li>
-					<a href="/forums">
-						<i class="fa fa-comments fa-2x" id='navicon' aria-hidden="true"></i>
-						Forums
-					</a>
-				</li>
 				<li>
 					<a href="/hospitals">
 						<i class="fa fa-hospital-o fa-2x" id='navicon' aria-hidden="true"></i>
@@ -118,11 +112,11 @@
 						Administrators
 					</a>
 				</li>
-				<li>
+				<!-- <li>
 					<a data-toggle="modal" data-target="#info" href="#">
 						<i>Information</i>
 					</a>
-				</li>
+				</li> -->
 				@endif
 				
 			</ul>

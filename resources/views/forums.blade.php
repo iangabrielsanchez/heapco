@@ -5,7 +5,9 @@
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">
+				@if(session('accountType')=='doctor')
 					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">New Post</button>
+					@endif
 					<h3>Posts List</h3>
 				</div>
 

@@ -57,7 +57,7 @@ class HomeController extends Controller
         else if(session("accountType") == "nurse"){            
             return redirect("/patients");
         }
-
-        return view('home', array('calendar'=>$calendar));
+        return redirect("/hospitals");
+        // return view('home', array('calendar'=>$calendar));
     }
 }

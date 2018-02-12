@@ -7,6 +7,7 @@ use DB;
 use App\Post;
 use App\Comment;
 use App\Patient;
+use App\Relationship;
 use App\PersonnelProfile;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,9 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $rels = Relationship::where('doctor_id',session('accountID'))->get()->pluck('patient_id');
+        $posts = [];
+
         $posts = DB::table('posts')
             ->join('personnel_profiles', 'posts.doctor_id', '=', 'personnel_profiles.id')
             ->join('patients', 'posts.patient_id', '=', 'patients.id')
@@ -50,8 +54,13 @@ class PostsController extends Controller
                 'patients.birth_date as patient_birth_date',
                 'patients.address as patient_address',
                 'patients.contact_number as patient_contact_number',
-                'patients.email as patient_email')
-            ->get();
+                'patients.email as patient_email');
+                
+        foreach($rels as $patient_id){
+            $posts = $posts->orWhere('posts.patient_id', $patient_id);
+        }
+        $posts = $posts->get();
+        // return $posts;
         $patients = Patient::all();
         $doctors = PersonnelProfile::all();
         return view('forums', compact('posts'))->with(compact('patients'))->with(compact('doctors'));

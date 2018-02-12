@@ -14,7 +14,7 @@ class RelationshipsController extends Controller
      */
     public function index()
     {
-        //
+        return Relationship::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class RelationshipsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rel = new Relationship;
+        $rel->doctor_id = $request['doctor_id'];
+        $rel->patient_id = $request['patient_id'];
+        $rel->save();
+        return back();        
     }
 
     /**
@@ -46,7 +50,7 @@ class RelationshipsController extends Controller
      */
     public function show(Relationship $relationship)
     {
-        //
+        
     }
 
     /**

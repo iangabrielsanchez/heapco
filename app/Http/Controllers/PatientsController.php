@@ -7,6 +7,7 @@ use App\Patient;
 use App\User;
 use App\Record;
 use App\File;
+use App\Relationship;
 use Storage;
 use App\Post;
 use Illuminate\Http\Request;
@@ -108,11 +109,19 @@ class PatientsController extends Controller
                 'patients.email as patient_email')
             ->get();
         $records = Record::where('patient_id',$patient->id)->get();
+        $rel = Relationship::where('patient_id',$patient->id)->where('doctor_id',session('accountID'))->get();
+        if (sizeOf($rel)>0){
+            $rel=true;
+        }
+        else{
+            $rel=false;
+        }
         return view('patient')
             ->with(compact('patient'))
             ->with(compact('files'))
             ->with(compact('posts'))
-            ->with(compact('records'));
+            ->with(compact('records'))
+            ->with(compact('rel'));
     }
 
     /**
@@ -160,5 +169,18 @@ class PatientsController extends Controller
             return true;
         }
         return false;
+    }
+
+    public function myPatients(){
+        $rels = Relationship::where('doctor_id',session('accountID'))->get()->pluck('patient_id');
+        $patients = [];
+        foreach($rels as $patient_id){
+            $patient = Patient::where('id', $patient_id)->get();
+            array_push($patients,$patient[0]);
+        }
+        // return $patients;
+        $patients = collect($patients);
+        // $patients = Patient::all();
+        return view('mypatients')->with(compact('patients'));
     }
 }
